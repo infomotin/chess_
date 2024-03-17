@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             //opening Data
             ListTile(
@@ -112,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 promotionBehaviour: PromotionBehaviour.autoPremove,
               ),
             ),
-
             //our Data
             ListTile(
               leading: const CircleAvatar(
