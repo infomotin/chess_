@@ -1,4 +1,7 @@
 import 'dart:math';
+import 'package:chess/main_screen/about_screen.dart';
+import 'package:chess/main_screen/game_time_screen.dart';
+import 'package:chess/main_screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,18 +22,77 @@ class _HomeScreenState extends State<HomeScreen> {
               'Flutter Chess',
               style: TextStyle(color: Colors.black),
             )),
-        body: GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          children: [
-            Card(
-              child: Column(
-                children: [
-                  Icon(Icons.computer)
-                ],
-              ),
-            )
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            children: [
+              buildGameType(
+                  label: 'Play Vs Computer',
+                  icon: Icons.computer,
+                  onTap: () {
+                    print("play vs computer");
+                    //Navigate to game time Screen
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GameTimeScreen()));
+                  }),
+              buildGameType(
+                  label: 'Play Vs Friend',
+                  icon: Icons.person,
+                  onTap: () {
+                    print("play vs friend");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GameTimeScreen()));
+                  }),
+              buildGameType(
+                  label: 'About Us',
+                  icon: Icons.info,
+                  onTap: () {
+                    print("about us");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AboutScreen()));
+                  }),
+              buildGameType(
+                  label: 'Settings', icon: Icons.settings, onTap: () {
+                print("settings");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SettingScreen()));
+                  }),
+            ],
+          ),
         ));
   }
+}
+
+Widget buildGameType(
+    {required String label,
+    String? gameTime,
+    IconData? icon,
+    required Function() onTap}) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(20),
+    onTap: onTap,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        icon != null ? Icon(icon) : Text(gameTime!),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          label,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        )
+      ],
+    ),
+  );
 }
