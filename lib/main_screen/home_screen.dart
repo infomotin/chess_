@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:chess/helpper/helpper_method.dart';
 import 'package:chess/main_screen/about_screen.dart';
 import 'package:chess/main_screen/game_time_screen.dart';
 import 'package:chess/main_screen/setting_screen.dart';
@@ -60,9 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             builder: (context) => const AboutScreen()));
                   }),
               buildGameType(
-                  label: 'Settings', icon: Icons.settings, onTap: () {
-                print("settings");
-                Navigator.push(
+                  label: 'Settings',
+                  icon: Icons.settings, 
+                  onTap: () {
+                   print("settings");
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SettingScreen()));
@@ -73,26 +76,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget buildGameType(
-    {required String label,
-    String? gameTime,
-    IconData? icon,
-    required Function() onTap}) {
-  return InkWell(
-    borderRadius: BorderRadius.circular(20),
-    onTap: onTap,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        icon != null ? Icon(icon) : Text(gameTime!),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        )
-      ],
-    ),
-  );
-}
