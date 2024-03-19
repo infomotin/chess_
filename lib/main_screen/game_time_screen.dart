@@ -38,6 +38,9 @@ class _GameTimeScreenState extends State<GameTimeScreen> {
                 gameTime: GameTime,
                 onTap: () {
                   Navigator.push(
+                      //send game time to game start up screen
+                      
+
                       context,
                       MaterialPageRoute(
                         builder: (context) => const GameStartUpScreen(),
